@@ -1,0 +1,741 @@
+﻿<!doctype html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ayazhan Parfume — Chance by Chanel</title>
+
+  <!-- Google Font (uses system fonts if blocked) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+<body style="background-image: url(https://media.istockphoto.com/photos/perfume-bottle-on-pastel-pink-background-care-about-fresh-fragrance-picture-id973900748?k=6&m=973900748&s=612x612&w=0&h=8rdsZ4qsxuBSmRnEkppaBisueQZ1pRWlbYOr7rP-3PU=); background-repeat: no-repeat; background-size: cover; background-position: center;">
+</body>
+    /* ---------- Reset & basics ---------- */
+    :root{
+      --bg:#fffafc;
+      --muted:#9aa0a6;
+      --accent-pink: #f7d7e6;
+      --accent-glow: rgba(255,182,193,0.25);
+      --card:#ffffff;
+      --shadow: 0 6px 20px rgba(20,20,30,0.08);
+      --glass: rgba(255,255,255,0.6);
+      --radius:14px;
+      --primary:#111;
+      --success:#27ae60;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #fffafc 0%, #fff 100%);
+      color:var(--primary);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    /* ---------- Header / nav ---------- */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:22px 28px;
+      position:sticky;
+      top:0;
+      z-index:40;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.55));
+      border-bottom: 1px solid rgba(20,20,30,0.03);
+    }
+    .brand{
+      font-family: "Playfair Display", serif;
+      font-weight:600;
+      font-size:20px;
+      letter-spacing:0.6px;
+      color:#222;
+    }
+    nav{display:flex; gap:16px; align-items:center}
+    nav a{
+      text-decoration:none; color:var(--muted); padding:8px 12px; border-radius:8px; font-weight:600;
+      transition: all .25s ease;
+    }
+    nav a.active, nav a:hover{ color:#222; background:var(--glass); transform:translateY(-2px) }
+
+    /* ---------- Hero (Home) ---------- */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:32px;
+      align-items:center;
+      padding:48px 6%;
+      min-height:72vh;
+    }
+    .hero-left{
+      max-width:720px;
+    }
+    .hero h1{
+      font-family: "Playfair Display", serif;
+      font-size:48px;
+      margin:0 0 12px;
+      color:#1a1a1a;
+      letter-spacing:0.2px;
+    }
+    .hero p{
+      margin:0 0 20px;
+      color: #6b6f74;
+      font-size:18px;
+    }
+    .hero-cta{
+      display:flex; gap:12px; align-items:center;
+    }
+    .btn{
+      background: #111; color:white; padding:12px 18px; border-radius:12px; text-decoration:none; font-weight:600;
+      box-shadow: 0 8px 20px rgba(17,17,17,0.08);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .btn:hover{ transform: translateY(-3px); box-shadow: 0 14px 36px rgba(17,17,17,0.12) }
+
+    /* hero right image / collage */
+    .hero-right{
+      position:relative;
+      border-radius:18px;
+      overflow:hidden;
+      padding:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35));
+      box-shadow: var(--shadow);
+    }
+    .collage{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+    }
+    .collage img{
+      width:100%; height:180px; object-fit:cover; border-radius:12px;
+      transition: transform .5s ease;
+    }
+    .collage img:hover{ transform: scale(1.03) }
+    .hero-caption{
+      margin-top:12px; font-size:14px; color:var(--muted);
+    }
+
+    /* ---------- Collections page ---------- */
+    .container{padding:36px 6%;}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap:22px;
+    }
+    .card{
+      background:var(--card); border-radius:16px; padding:18px; box-shadow:var(--shadow);
+      position:relative; overflow:visible;
+      transform:translateY(0);
+      transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s;
+    }
+    .card:hover{ transform: translateY(-6px); box-shadow: 0 20px 40px rgba(20,20,30,0.09) }
+    .product-img{
+      border-radius:12px; overflow:hidden; height:220px; display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(180deg, #fff, #fffaf8);
+      position:relative;
+    }
+    .product-img img{ max-height:200px; width:auto; transition: transform .4s ease, filter .4s ease; }
+    .card:hover .product-img img{ transform: scale(1.07); filter: drop-shadow(0 18px 30px rgba(255,182,193,0.12)); }
+    .product-name{ font-family:"Playfair Display", serif; font-size:18px; margin:12px 0 6px; }
+    .product-meta{ color:var(--muted); font-size:14px; margin-bottom:12px; }
+    .options{ display:flex; gap:10px; margin-bottom:12px; }
+    .option{
+      padding:8px 12px; border-radius:10px; border:1px solid rgba(20,20,30,0.06); cursor:pointer; user-select:none;
+      transition: all .18s;
+      background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+      font-weight:600;
+    }
+    .option.active{ box-shadow: 0 8px 18px rgba(255,182,193,0.12); border-color: rgba(255,182,193,0.2); background: var(--accent-pink) }
+    .buy-row{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
+    .price{ font-weight:700; font-size:18px; }
+    .add-btn{ padding:10px 14px; border-radius:12px; border:none; background:#111; color:white; cursor:pointer; font-weight:700; transition: transform .12s }
+    .add-btn:active{ transform: translateY(1px) }
+
+    /* hover glow effect (pink) */
+    .card::after{
+      content:"";
+      position:absolute; inset: -30% -30% auto auto; width:160px; height:160px; border-radius:50%;
+      background: linear-gradient(135deg, rgba(255,182,193,0.14), rgba(255,240,245,0));
+      pointer-events:none; transform: translateX(20px) translateY(20px) scale(.9); opacity:0; transition: all .45s;
+    }
+    .card:hover::after{ opacity:1; transform: translateX(0) translateY(0) scale(1) }
+
+    /* ---------- Cart button & animation ---------- */
+    .cart-toggle{
+      position:fixed; right:22px; top:22px; z-index:60;
+      background:linear-gradient(180deg,#fff,#fffaf8); padding:10px 12px; border-radius:14px; box-shadow:var(--shadow);
+      display:flex; gap:10px; align-items:center; border:1px solid rgba(20,20,30,0.04);
+    }
+    .cart-count{
+      background: #ff7fbf; color:white; font-weight:800; font-size:13px;
+      padding:6px 8px; border-radius:999px;
+      box-shadow:0 6px 18px rgba(255,127,191,0.14);
+    }
+
+    /* cart drawer */
+    .cart-drawer{
+      position:fixed; right:18px; top:80px; width:380px; max-width:92vw; bottom:18px;
+      background:linear-gradient(180deg, #fff, #fffafc); border-radius:16px; box-shadow: 0 30px 80px rgba(20,20,30,0.12);
+      padding:18px; transform: translateX(50px) scale(.98); opacity:0; pointer-events:none; transition: all .35s cubic-bezier(.2,.9,.3,1);
+      z-index:70;
+      overflow:auto;
+    }
+    .cart-drawer.open{ transform:none; opacity:1; pointer-events:auto }
+    .cart-item{ display:flex; gap:12px; align-items:center; margin-bottom:12px; padding-bottom:12px; border-bottom:1px dashed rgba(20,20,30,0.04) }
+    .cart-item img{ width:56px; height:56px; object-fit:cover; border-radius:8px; }
+    .cart-item .meta{ flex:1 }
+    .cart-total{ display:flex; justify-content:space-between; align-items:center; margin-top:12px; font-weight:800; font-size:18px; }
+
+    /* form in drawer */
+    .checkout-form{ margin-top:14px; display:grid; gap:10px; }
+    .field{ display:flex; flex-direction:column; gap:6px; }
+    .field input, .field textarea, .select{
+      padding:10px 12px; border-radius:10px; border:1px solid rgba(20,20,30,0.06); font-size:14px;
+      background:linear-gradient(180deg,#fff,#fff);
+    }
+    .pay-options{ display:flex; gap:8px; }
+    .pay-option{ flex:1; padding:10px; text-align:center; border-radius:10px; cursor:pointer; border:1px solid rgba(20,20,30,0.06); }
+    .pay-option.active{ background:var(--glass); box-shadow: 0 8px 20px rgba(17,17,17,0.04); border-color: rgba(20,20,30,0.08) }
+
+    .submit-btn{ margin-top:8px; padding:12px; border-radius:12px; border:none; background:var(--primary); color:white; font-weight:800; cursor:pointer; }
+
+    /* ---------- Footer / contact fixed right-bottom ---------- */
+    .fixed-contact{
+      position:fixed; right:18px; bottom:18px; z-index:80;
+      background:transparent; color: #9aa0a6; font-weight:700; pointer-events:none;
+      font-size:13px; user-select:none;
+    }
+
+    /* ---------- Reviews page style ---------- */
+    .reviews{ padding:28px 6% 80px; }
+    .review-card{ background:linear-gradient(180deg,#fff,#fffaf8); padding:16px; border-radius:12px; box-shadow:var(--shadow); }
+    .reviewer{ font-weight:700; font-size:15px; }
+    .stars{ color:#f5c156; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:980px){
+      .hero{ grid-template-columns: 1fr; padding:32px 6% }
+      .hero-right{ order:2 }
+      header{ padding:12px 16px }
+      nav a{ padding:6px 8px; font-size:14px }
+      .hero h1{ font-size:36px }
+    }
+    @media (max-width:520px){
+      .collage img{ height:120px }
+      .product-img{ height:160px }
+    }
+
+    /* Subtle entrance animation for pages */
+    .page { opacity:0; transform: translateY(8px); transition: all .42s cubic-bezier(.2,.9,.3,1); }
+    .page.visible{ opacity:1; transform:none }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="brand">Ayazhan Parfume</div>
+
+    <nav aria-label="main navigation">
+      <a href="#" class="nav-link" data-target="home">Басты бет</a>
+      <a href="#" class="nav-link" data-target="collections">Коллекция</a>
+      <a href="#" class="nav-link" data-target="reviews">Пікірлер</a>
+      <a href="#" class="nav-link" data-target="contact">Мекен жайымыз</a>
+    </nav>
+
+    <!-- visible cart toggle -->
+    <div class="cart-toggle" role="button" aria-label="Себет" id="cartToggle">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
+        <path d="M3 3h2l.4 2M7 13h10l3-8H6.4" stroke="#111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+        <circle cx="10.5" cy="19.5" r="1.5" fill="#111"></circle>
+        <circle cx="17.5" cy="19.5" r="1.5" fill="#111"></circle>
+      </svg>
+      <div style="font-size:13px;color:#222;font-weight:700">Себет</div>
+      <div class="cart-count" id="cartCount">0</div>
+    </div>
+  </header>
+
+  <!-- Hero / Home -->
+  <main>
+    <section id="home" class="page visible">
+      <div class="hero">
+        <div class="hero-left">
+          <h1>Chance — классикалық нәзіктік</h1>
+          <p>Ayazhan Parfume ұсынған Chanel Chance коллекциясының нәзік және әйелдік композициялары. Тек сапалы және түпнұсқа өнімдер.</p>
+          <div class="hero-cta">
+            <a class="btn" href="#" data-target="collections">Коллекциялар көру</a>
+            <a class="btn" href="#" style="background:transparent;color:#111;border:1px solid rgba(20,20,30,0.06)">Келісім шарттар</a>
+          </div>
+        </div>
+
+        <div class="hero-right" aria-hidden="true">
+          <!-- Collage of all Chance photos (replace src with an actual collage image if you have one) -->
+          <div style="font-size:13px;color:var(--muted); margin-bottom:8px">Chance — барлық коллекциялардан сурет коллажы 
+          <div class="collage" role="img" aria-label="Chanel Chance коллаж суреттері">
+            <!-- Replace these image URLs with real product photos or a single collage -->
+            <img src="https://cdn.aroma-butik.ru/images/categories/goods_full/60108_1694787659_Chanel_Chance_Eau_Fraiche_Eau_de_Parfum_.jpg"Chance Eau Fraîche - сурет (орынбасар)">
+            <img src="https://i.ebayimg.com/thumbs/images/g/deUAAOSwBO1lAE39/s-l640.jpg" alt="Chance Eau Tendre - сурет (орынбасар)">
+            <img src="https://media.iciparisxl.be/medias/zoom-front-746372-954x1192?context=bWFzdGVyfHByZC1pbWFnZXN8MzI4Njd8aW1hZ2UvanBlZ3xhREEyTDJoaU9DODRPVGd4TURNNE5ETXlNamcyTDNwdmIyMHRabkp2Ym5RdE56UTJNemN5WHprMU5IZ3hNVGt5fDBlYzgyNDNkNzUxM2M2MDkwZmQ0YjM2OGNmYzg2OTMwNjNiYzQwZGZlYWQ5NTUyMDhjNzkzOTBiOGNhZDNhMzA"Chance Eau Vive - сурет (орынбасар)">
+            <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_684785fd33562a4b41f75f01_68497748e81e9155a69c15b9/scale_1200"Chance Eau Splendide - сурет (орынбасар)">
+          </div>
+          <div class="hero-caption">Нәзік әдемі сөз: «Әр күн — өзіңді сыйлау»</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collections -->
+    <section id="collections" class="page" style="display:none;">
+      <div class="container">
+        <h2 style="font-family:'Playfair Display', serif;margin-bottom:6px">Коллекциялар</h2>
+        <p style="color:var(--muted); margin-top:0">Төмендегі 4 түпнұсқа коллекциядан 50 мл немесе 100 мл таңдаңыз.</p>
+
+        <div class="grid" id="productsGrid">
+          <!-- Product cards are generated by JS for clarity; static fallback included in JS comments -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="page" style="display:none;">
+      <div class="reviews">
+        <h2 style="font-family:'Playfair Display', serif;margin-bottom:8px">Пікірлер</h2>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit,minmax(220px,1fr));">
+          <!-- Random 6-7 reviews (hardcoded) -->
+          <div class="review-card">
+            <div class="reviewer">Айжан</div>
+            <div class="stars">★★★★★</div>
+            <p style="margin:6px 0;color:var(--muted)">Таңдау керемет — иісі жарқын және ұзақ сақталады. Қызымға сыйлық алдық, өте қуанды.</p>
+          </div>
+          <div class="review-card">
+            <div class="reviewer">Мұрат</div>
+            <div class="stars">★★★★☆</div>
+            <p style="margin:6px 0;color:var(--muted)">Жақсы сервис, жеткізу тез болды. Қаптамасы әдемі.</p>
+          </div>
+          <div class="review-card">
+            <div class="reviewer">Гүлнар</div>
+            <div class="stars">★★★★★</div>
+            <p style="margin:6px 0;color:var(--muted)">Шынайы Chanel дәмі. 100 мл — ұзақ уақыт жетеді.</p>
+          </div>
+          <div class="review-card">
+            <div class="reviewer">Данияр</div>
+            <div class="stars">★★★★☆</div>
+            <p style="margin:6px 0;color:var(--muted)">Бағасы лайық — нағыз түпнұсқа дегендей сезім береді.</p>
+          </div>
+          <div class="review-card">
+            <div class="reviewer">Юлия</div>
+            <div class="stars">★★★★★</div>
+            <p style="margin:6px 0;color:var(--muted)">Қызым өте қанағаттанды. Рақмет!</p>
+          </div>
+          <div class="review-card">
+            <div class="reviewer">Аружан</div>
+            <div class="stars">★★★★★</div>
+            <p style="margin:6px 0;color:var(--muted)">Иісінің нәзіктігі ұнады — күнделікті қолдануға тамаша.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact / Address -->
+    <section id="contact" class="page" style="display:none;">
+      <div class="container" style="padding-top:28px;">
+        <h2 style="font-family:'Playfair Display', serif;margin-bottom:6px">Мекен жайымыз</h2>
+        <p style="color:var(--muted); margin-top:0">Қонақ келу үшін алдын ала хабарласыңыз.</p>
+
+        <div style="background:var(--card); padding:18px; border-radius:12px; box-shadow:var(--shadow); max-width:720px">
+          <div style="font-weight:800">Қала:</div>
+          <div style="margin-bottom:6px">Түркістан</div>
+          <div style="font-weight:800">Көше:</div>
+          <div>Рабиға Сұлтан Бегім 14 А</div>
+          <div style="margin-top:12px;color:var(--muted)"><strong>Жұмыс сағаттары:</strong> 10:00 — 19:00</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Cart drawer (hidden by default) -->
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-weight:800;font-size:18px">Себет</div>
+      <button id="closeCart" style="background:none;border:none;cursor:pointer;font-size:18px;color:var(--muted)">✕</button>
+    </div>
+
+    <div id="cartItems">
+      <div style="color:var(--muted);">Сіз әлі ештеңе таңдаған жоқсыз</div>
+    </div>
+
+    <div class="cart-total" id="cartTotalRow" style="display:none;">
+      <div>Жалпы</div>
+      <div id="cartTotal">0 ₸</div>
+    </div>
+
+    <!-- Checkout form appears when user clicks "Сатып алу" in cart -->
+    <form class="checkout-form" id="checkoutForm" style="display:none;">
+      <div class="field">
+        <label>Аты-жөні</label>
+        <input type="text" id="cfName" placeholder="Толық аты-жөніңіз" required>
+      </div>
+      <div class="field">
+        <label>Мекен жай</label>
+        <input type="text" id="cfAddress" placeholder="Мекен жайы (Қала, Көше, Үй/пәтер)" required>
+      </div>
+      <div class="field">
+        <label>Байланыс телефоны</label>
+        <input type="tel" id="cfPhone" placeholder="+7 7xx xxx xx xx" required>
+      </div>
+
+      <div class="field">
+        <label>Төлеу амалдары</label>
+        <div class="pay-options" role="tablist" aria-label="Төлеу әдістері">
+          <div class="pay-option active" data-pay="card">Картамен</div>
+          <div class="pay-option" data-pay="cash">Қолма-қол</div>
+        </div>
+      </div>
+
+      <button class="submit-btn" id="placeOrder">Тапсырыс беру</button>
+      <div style="font-size:13px;color:var(--muted);margin-top:8px">Сізге тапсырыс расталатын хабарлама жіберіледі.</div>
+    </form>
+  </aside>
+
+  <!-- Fixed contact (bottom-right, grey, non-clickable) -->
+  <div class="fixed-contact">Байланыс: +7 747 500 73 59</div>
+
+  <!-- Scripts -->
+  <script>
+    /* ---------- Data (products) ---------- */
+    const PRODUCTS = [
+      {
+        id: 'chance-fraiche',
+        name: 'Chanel Chance Eau Fraîche',
+        basePrice: 68700, // replace with local currency value (тг) if desired
+        img:"https://cdn.aroma-butik.ru/images/categories/goods_full/60108_1694787659_Chanel_Chance_Eau_Fraiche_Eau_de_Parfum_.jpg"
+      },
+      {
+        id: 'chance-tendre',
+        name: 'Chanel Chance Eau Tendre',
+        basePrice: 69700,
+        img: 'https://i.ebayimg.com/thumbs/images/g/deUAAOSwBO1lAE39/s-l640.jpg'
+      },
+      {
+        id: 'chance-vive',
+        name: 'Chanel Chance Eau Vive',
+        basePrice: 63750,
+        img: 'https://media.iciparisxl.be/medias/zoom-front-746372-954x1192?context=bWFzdGVyfHByZC1pbWFnZXN8MzI4Njd8aW1hZ2UvanBlZ3xhREEyTDJoaU9DODRPVGd4TURNNE5ETXlNamcyTDNwdmIyMHRabkp2Ym5RdE56UTJNemN5WHprMU5IZ3hNVGt5fDBlYzgyNDNkNzUxM2M2MDkwZmQ0YjM2OGNmYzg2OTMwNjNiYzQwZGZlYWQ5NTUyMDhjNzkzOTBiOGNhZDNhMzA'
+      },
+      {
+        id: 'chance-splendide',
+        name: 'Chanel Chance Eau Splendide',
+        basePrice: 72800,
+        img: 'https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_684785fd33562a4b41f75f01_68497748e81e9155a69c15b9/scale_1200'
+      }
+    ];
+
+    /* Price mapping by volume */
+    const VOLUME = {
+      '50': 1.0,
+      '100': 1.9
+    };
+
+    /* ---------- DOM refs ---------- */
+    const productsGrid = document.getElementById('productsGrid');
+    const cartCountEl = document.getElementById('cartCount');
+    const cartToggle = document.getElementById('cartToggle');
+    const cartDrawer = document.getElementById('cartDrawer');
+    const cartItemsEl = document.getElementById('cartItems');
+    const cartTotalEl = document.getElementById('cartTotal');
+    const cartTotalRow = document.getElementById('cartTotalRow');
+    const checkoutForm = document.getElementById('checkoutForm');
+    const placeOrderBtn = document.getElementById('placeOrder');
+    const closeCartBtn = document.getElementById('closeCart');
+
+    let CART = []; // {productId, volume, qty, price, name, img}
+
+    /* ---------- Render products ---------- */
+    function renderProducts(){
+      productsGrid.innerHTML = '';
+      PRODUCTS.forEach(prod=>{
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="product-img">
+            <img src="${prod.img}" alt="${prod.name}">
+          </div>
+          <div class="product-name">${prod.name}</div>
+          <div class="product-meta">Түпнұсқа Chanel</div>
+          <div class="options" data-product="${prod.id}">
+            <div class="option" data-value="50">50 мл</div>
+            <div class="option" data-value="100">100 мл</div>
+          </div>
+          <div class="buy-row">
+            <div class="price" data-base="${prod.basePrice}">${formatPrice(prod.basePrice)} ₸</div>
+            <button class="add-btn" data-product="${prod.id}">Сатып алу</button>
+          </div>
+        `;
+        productsGrid.appendChild(card);
+
+        // default select 50 мл
+        const opts = card.querySelectorAll('.option');
+        opts.forEach(o=>{
+          o.addEventListener('click', e=>{
+            opts.forEach(x=>x.classList.remove('active'));
+            o.classList.add('active');
+            // update price display
+            const base = prod.basePrice;
+            const volume = o.dataset.value;
+            const newPrice = Math.round(base * VOLUME[volume]);
+            card.querySelector('.price').textContent = formatPrice(newPrice) + ' ₸';
+          });
+        });
+        // set default active
+        opts[0].classList.add('active');
+
+        // hover effect: slight pink glow on image when active
+        card.addEventListener('mouseenter', ()=>{
+          card.style.transition = 'transform .25s';
+        });
+
+      });
+
+      // attach global add button handlers
+      document.querySelectorAll('.add-btn').forEach(btn=>{
+        btn.addEventListener('click', onAddToCart);
+      });
+
+      // attach option click handlers already added above for dynamic elements
+    }
+
+    /* ---------- Helpers ---------- */
+    function formatPrice(n){
+      // simple thousand separator
+      return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
+    function findSelectedVolume(cardEl){
+      const active = cardEl.querySelector('.option.active');
+      return active ? active.dataset.value : '50';
+    }
+
+    /* ---------- Add to cart animation & logic ---------- */
+    function onAddToCart(e){
+      const pid = e.currentTarget.dataset.product;
+      const prod = PRODUCTS.find(p=>p.id===pid);
+      const card = e.currentTarget.closest('.card');
+      const volume = findSelectedVolume(card);
+      const price = Math.round(prod.basePrice * VOLUME[volume]);
+      // Add to CART (merge if same product & volume)
+      const existing = CART.find(i => i.productId===pid && i.volume===volume);
+      if(existing){
+        existing.qty += 1;
+      } else {
+        CART.push({
+          productId: pid,
+          name: prod.name,
+          img: prod.img,
+          volume,
+          qty: 1,
+          price
+        });
+      }
+      updateCartUI();
+
+      // visual "fly to cart" animation
+      animateAddToCart(card.querySelector('img'));
+    }
+
+    function animateAddToCart(imgEl){
+      const imgRect = imgEl.getBoundingClientRect();
+      const cartRect = cartToggle.getBoundingClientRect();
+
+      const fly = imgEl.cloneNode(true);
+      fly.style.position='fixed';
+      fly.style.left = imgRect.left + 'px';
+      fly.style.top = imgRect.top + 'px';
+      fly.style.width = imgRect.width + 'px';
+      fly.style.height = imgRect.height + 'px';
+      fly.style.zIndex = 2000;
+      fly.style.transition = 'all 700ms cubic-bezier(.2,.8,.2,1)';
+      fly.style.borderRadius = '10px';
+      document.body.appendChild(fly);
+
+      requestAnimationFrame(()=>{
+        fly.style.left = (cartRect.left + 10) + 'px';
+        fly.style.top = (cartRect.top + 6) + 'px';
+        fly.style.width = '28px';
+        fly.style.height = '28px';
+        fly.style.opacity = '0.6';
+        fly.style.transform = 'rotate(15deg)';
+      });
+
+      setTimeout(()=>{ fly.remove(); flashCartCount(); openCartDrawerBrief(); }, 750);
+    }
+
+    function flashCartCount(){
+      const el = cartCountEl;
+      el.animate([
+        { transform: 'scale(1)' },
+        { transform: 'scale(1.2)' },
+        { transform: 'scale(1)' }
+      ], { duration: 420, easing:'cubic-bezier(.2,.8,.2,1)' });
+    }
+
+    /* ---------- Cart UI ---------- */
+    function updateCartUI(){
+      // update count
+      const totalQty = CART.reduce((s,i)=>s+i.qty,0);
+      cartCountEl.textContent = totalQty;
+
+      // update items list
+      cartItemsEl.innerHTML = '';
+      if(CART.length===0){
+        cartItemsEl.innerHTML = '<div style="color:var(--muted)">Сіз әлі ештеңе таңдаған жоқсыз</div>';
+        cartTotalRow.style.display = 'none';
+        checkoutForm.style.display = 'none';
+        return;
+      }
+
+      CART.forEach(item=>{
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <img src="${item.img}" alt="${item.name}">
+          <div class="meta">
+            <div style="font-weight:700">${item.name}</div>
+            <div style="color:var(--muted);font-size:13px">${item.volume} мл • ${item.qty} дана</div>
+            <div style="margin-top:6px;font-weight:800">${formatPrice(item.price * item.qty)} ₸</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;align-items:center">
+            <button style="background:none;border:1px solid rgba(20,20,30,0.06);border-radius:8px;padding:6px 8px;cursor:pointer" data-action="inc" data-id="${item.productId}" data-volume="${item.volume}">+</button>
+            <button style="background:none;border:1px solid rgba(20,20,30,0.06);border-radius:8px;padding:6px 8px;cursor:pointer" data-action="dec" data-id="${item.productId}" data-volume="${item.volume}">−</button>
+          </div>
+        `;
+        cartItemsEl.appendChild(div);
+      });
+
+      // attach inc/dec handlers
+      cartItemsEl.querySelectorAll('button[data-action]').forEach(btn=>{
+        btn.addEventListener('click', (e)=>{
+          const id = btn.dataset.id;
+          const vol = btn.dataset.volume;
+          const action = btn.dataset.action;
+          const item = CART.find(x=>x.productId===id && x.volume===vol);
+          if(!item) return;
+          if(action==='inc') item.qty++;
+          if(action==='dec') item.qty--;
+          if(item.qty<=0){
+            CART = CART.filter(x=>!(x.productId===id && x.volume===vol));
+          }
+          updateCartUI();
+        });
+      });
+
+      // show total
+      const totalSum = CART.reduce((s,i)=>s + i.price * i.qty, 0);
+      cartTotalEl.textContent = formatPrice(totalSum) + ' ₸';
+      cartTotalRow.style.display = 'flex';
+      // show checkout form
+      checkoutForm.style.display = 'grid';
+    }
+
+    /* ---------- Cart drawer open/close ---------- */
+    function openCartDrawer(){
+      cartDrawer.classList.add('open');
+      cartDrawer.setAttribute('aria-hidden','false');
+    }
+    function closeCartDrawer(){
+      cartDrawer.classList.remove('open');
+      cartDrawer.setAttribute('aria-hidden','true');
+    }
+    function openCartDrawerBrief(){
+      openCartDrawer();
+      // auto close after 2200ms if user doesn't interact
+      setTimeout(()=>{ if(!cartDrawer.matches(':hover')) closeCartDrawer(); }, 2200);
+    }
+
+    cartToggle.addEventListener('click', ()=>{ openCartDrawer(); });
+    closeCartBtn.addEventListener('click', ()=>{ closeCartDrawer(); });
+
+    /* ---------- Checkout form submit (demo) ---------- */
+    placeOrderBtn.addEventListener('click', (ev)=>{
+      ev.preventDefault();
+      // Simple validation
+      const name = document.getElementById('cfName').value.trim();
+      const addr = document.getElementById('cfAddress').value.trim();
+      const phone = document.getElementById('cfPhone').value.trim();
+      if(!name || !addr || !phone){
+        alert('Барлық өрістерді толтырыңыз');
+        return;
+      }
+      // Demo "order placed" behaviour
+      alert('Сіздің тапсырысыңыз қабылданды! Қазіргі кезде бұл демо нұсқасы — нақты төлем модулі қосылмаған.');
+      // reset cart
+      CART = [];
+      updateCartUI();
+      closeCartDrawer();
+    });
+
+    /* ---------- Navigation (single-page) ---------- */
+    function showPage(id){
+      document.querySelectorAll('.page').forEach(p=>{
+        if(p.id===id){
+          p.style.display = '';
+          requestAnimationFrame(()=> p.classList.add('visible'));
+        } else {
+          p.style.display = 'none';
+          p.classList.remove('visible');
+        }
+      });
+      document.querySelectorAll('.nav-link').forEach(a=>{
+        a.classList.toggle('active', a.dataset.target===id);
+      });
+      // scroll to top for better UX
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    document.querySelectorAll('.nav-link').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const t = a.dataset.target;
+        showPage(t);
+      });
+    });
+
+    // hero CTA anchors
+    document.querySelectorAll('a[data-target]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const t = a.dataset.target;
+        showPage(t);
+      });
+    });
+
+    /* ---------- Payment option toggles ---------- */
+    document.querySelectorAll('.pay-option').forEach(el=>{
+      el.addEventListener('click', ()=> {
+        document.querySelectorAll('.pay-option').forEach(x=>x.classList.remove('active'));
+        el.classList.add('active');
+      })
+    });
+
+    /* ---------- Initialize ---------- */
+    renderProducts();
+    updateCartUI();
+
+    // make home visible on load
+    showPage('home');
+
+    // Keyboard accessibility: Esc closes cart drawer
+    document.addEventListener('keydown', (e)=>{
+      if(e.key==='Escape') closeCartDrawer();
+    });
+
+    // Make contact text non-clickable (pointer-events:none already set in CSS) but accessible for reading
+    // All done.
+  </script>
+</body>
+</html>
